@@ -1,3 +1,5 @@
+package schemas
+
 object SchemaRepo {
 
     val initialSchema = """
