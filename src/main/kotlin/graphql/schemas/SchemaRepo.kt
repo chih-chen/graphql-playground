@@ -9,7 +9,7 @@ object SchemaRepo {
         type Account {
             name: String!
             bank: String
-            password: String! @restricted(role: "X")
+            password: String! @restricted(role: "admin")
         }
 
         type Query {
@@ -20,13 +20,9 @@ object SchemaRepo {
             name: String
         }
 
-        type AccountOutput {
-            updated: Boolean
-        }
-
         type Mutation {
-            saveAccount(payload: AccountInput): AccountOutput
-            saveAccount2(payload: AccountInput): AccountOutput
+            saveAccount(payload: AccountInput): Account
+            saveAccount2(payload: AccountInput): Account
         }
 
         schema {

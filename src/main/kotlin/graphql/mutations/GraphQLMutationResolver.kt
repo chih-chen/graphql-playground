@@ -5,15 +5,20 @@ import graphql.schema.GraphQLArgument
 import graphql.schema.GraphQLInputObjectType
 import graphql.schema.GraphQLObjectType
 
-interface GraphQLMutationResolver {
+interface GraphQLMutationResolver<T> {
 
-    val outputType: GraphQLObjectType
+    /**
+     * Name of the type from your SDL definition
+     */
+    val typeName: String
 
-    val mutationObject: GraphQLObjectType
+    /**
+     * Name of the field from your schema which wants to provide data fetcher
+     */
+    val fieldName: String
 
-    val argumentType: GraphQLInputObjectType
-
-    val argument: GraphQLArgument
-
-    val mutationResolver: (DataFetchingEnvironment) -> Any
+    /**
+     * Data fetcher for your field
+     */
+    fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> T
 }

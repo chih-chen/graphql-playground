@@ -30,12 +30,3 @@ fun Builder.mutations(vararg mutations: GraphQLResolver<*>): Builder {
     }
     return this
 }
-
-
-
-fun GraphQLSchema.Builder.mutations(vararg mutations: GraphQLMutationResolver): GraphQLSchema.Builder {
-    mutations.forEach { mutation ->
-        this.mutation(mutation.mutationObject)
-    }
-    return this
-}
