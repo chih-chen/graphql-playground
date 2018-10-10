@@ -1,10 +1,8 @@
-package graphql
+package graphql.utils
 
 import graphql.directives.DirectiveWiring
-import graphql.mutations.GraphQLMutationResolver
 import graphql.schema.idl.RuntimeWiring.Builder
 import graphql.resolvers.GraphQLResolver
-import graphql.schema.GraphQLSchema
 
 fun Builder.directives(vararg directives: DirectiveWiring): Builder {
     directives.forEach { directive ->

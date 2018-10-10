@@ -1,32 +1,55 @@
 package application
 
-import com.coxautodev.graphql.tools.SchemaParser
 import graphql.GraphQL
-import repositories.BookRepository
-import resolvers.QueryResolver
+import graphql.utils.directives
+import graphql.directives.RestrictedDirective
+import graphql.utils.mutations
+import graphql.mutations.AccountMutation
+import graphql.mutations.AccountMutation2
+import graphql.utils.resolvers
+import graphql.resolvers.QueryTypeResolver
+import graphql.schema.idl.RuntimeWiring
+import graphql.schema.idl.SchemaGenerator
+import graphql.schema.idl.SchemaParser
+import graphql.schemas.SchemaRepo
 
 fun main(args: Array<String>) {
 
-    val bookRepo = BookRepository()
-    val queryResolver = QueryResolver(bookRepo)
+    val schema = SchemaRepo.initialSchema
 
-    val schemaGenerator = SchemaParser
-            .newParser()
-            .file("book.graphqls")
-            .resolvers(queryResolver)
+    val runtimeWiring = RuntimeWiring.newRuntimeWiring()
+            .directives(RestrictedDirective())
+            .resolvers(QueryTypeResolver())
+            .mutations(AccountMutation(), AccountMutation2())
             .build()
-            .makeExecutableSchema()
 
-    val graphQL = GraphQL.newGraphQL(schemaGenerator).build()
+    val typeDefinitionRegistry = SchemaParser().parse(schema)
 
-    val result = graphQL.execute("""
-        query {
-            allBooks {
-                title
-                author
+    val graphQlSchema = SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring)
+
+//    val graphQLFullSchema = GraphQLSchema
+//            .newSchema(graphQlSchema)
+//            .mutations(AccountMutation(), AccountMutation2())
+//            .build()
+
+    val buildSchema = GraphQL.newGraphQL(graphQlSchema).build()
+
+    val result = buildSchema.execute("""
+
+        mutation SaveAccountMutation {
+            a: saveAccount(payload: {name: "Jony"} ) {
+                name
+            }
+            b: saveAccount(payload: {name: "Terry"} ) {
+                name
+                bank
+                password
+            }
+            c: saveAccount2(payload: {name: "Jaina"}) {
+                bank
             }
         }
-    """.trimIndent())
 
-    println(result.getData<String>())
+    """.trimIndent())
+    println(result.toSpecification())
 }
