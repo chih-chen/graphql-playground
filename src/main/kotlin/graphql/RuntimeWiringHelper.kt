@@ -22,6 +22,17 @@ fun Builder.resolvers(vararg resolvers: GraphQLResolver<*>): Builder {
     return this
 }
 
+fun Builder.mutations(vararg mutations: GraphQLResolver<*>): Builder {
+    mutations.forEach { mutation ->
+        this.type(mutation.typeName) {
+            it.dataFetcher(mutation.fieldName, mutation.fieldDataFetcher())
+        }
+    }
+    return this
+}
+
+
+
 fun GraphQLSchema.Builder.mutations(vararg mutations: GraphQLMutationResolver): GraphQLSchema.Builder {
     mutations.forEach { mutation ->
         this.mutation(mutation.mutationObject)

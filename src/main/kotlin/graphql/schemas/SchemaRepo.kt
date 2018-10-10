@@ -26,6 +26,7 @@ object SchemaRepo {
 
         type Mutation {
             saveAccount(payload: AccountInput): AccountOutput
+            saveAccount2(payload: AccountInput): AccountOutput
         }
 
         schema {

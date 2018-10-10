@@ -4,6 +4,7 @@ import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
 
 class QueryTypeResolver : GraphQLResolver<Account> {
+
     override val typeName = "Query"
 
     override val fieldName = "account"

@@ -3,15 +3,12 @@ package graphql.mutations
 import graphql.Scalars
 import graphql.schema.DataFetchingEnvironment
 import graphql.schema.GraphQLArgument
-import graphql.schema.GraphQLArgument.newArgument
 import graphql.schema.GraphQLInputObjectType
-import graphql.schema.GraphQLInputObjectType.newInputObject
 import graphql.schema.GraphQLObjectType
-import graphql.schema.GraphQLObjectType.newObject
 
-class AccountMutation : GraphQLMutationResolver {
+class AccountMutation2 : GraphQLMutationResolver {
 
-    override val outputType: GraphQLObjectType = newObject()
+    override val outputType: GraphQLObjectType = GraphQLObjectType.newObject()
             .name("AccountOutput")
             .field {
                 it.name("updated")
@@ -19,7 +16,7 @@ class AccountMutation : GraphQLMutationResolver {
             }
             .build()
 
-    override val argumentType: GraphQLInputObjectType = newInputObject()
+    override val argumentType: GraphQLInputObjectType = GraphQLInputObjectType.newInputObject()
             .name("AccountInput")
             .field {
                 it.name("name")
@@ -27,20 +24,20 @@ class AccountMutation : GraphQLMutationResolver {
             }
             .build()
 
-    override val argument: GraphQLArgument = newArgument()
+    override val argument: GraphQLArgument = GraphQLArgument.newArgument()
             .name("payload")
             .type(argumentType)
             .build()
 
     override val mutationResolver: (DataFetchingEnvironment) -> Any = {
         println("saving2...${it.arguments.entries}")
-        mapOf("updated" to false)
+        mapOf("updated" to true)
     }
 
-    override val mutationObject: GraphQLObjectType = newObject()
-            .name("saveAccount")
+    override val mutationObject: GraphQLObjectType = GraphQLObjectType.newObject()
+            .name("saveAccount2")
             .field {
-                it.name("saveAccount")
+                it.name("saveAccount2")
                 it.type(outputType)
                 it.argument(argument)
                 it.dataFetcher(mutationResolver)

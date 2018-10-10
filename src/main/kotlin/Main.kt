@@ -3,6 +3,7 @@ import graphql.directives
 import graphql.directives.RestrictedDirective
 import graphql.mutations
 import graphql.mutations.AccountMutation
+import graphql.mutations.AccountMutation2
 import graphql.resolvers
 import graphql.resolvers.QueryTypeResolver
 import graphql.schema.GraphQLSchema
@@ -27,17 +28,19 @@ fun main(args: Array<String>) {
 
     val graphQLFullSchema = GraphQLSchema
             .newSchema(graphQlSchema)
-            .mutations(AccountMutation())
+            .mutations(AccountMutation(), AccountMutation2())
             .build()
 
     val buildSchema = GraphQL.newGraphQL(graphQLFullSchema).build()
 
     val result = buildSchema.execute("""
-        query {
-            account {
-                name
-                bank
-                password
+
+        mutation SaveAccountMutation {
+            a: saveAccount(payload: {name: "Chih"} ) {
+                updated
+            }
+            b: saveAccount(payload: {name: "Chen"} ) {
+                updated
             }
         }
     """.trimIndent())
