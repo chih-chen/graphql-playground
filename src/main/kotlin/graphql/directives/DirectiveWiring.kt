@@ -1,4 +1,4 @@
-package directives
+package graphql.directives
 
 import graphql.schema.idl.SchemaDirectiveWiring
 

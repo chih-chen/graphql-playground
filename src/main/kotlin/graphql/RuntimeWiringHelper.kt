@@ -1,7 +1,10 @@
-import directives.DirectiveWiring
-import graphql.schema.idl.RuntimeWiring.Builder
-import resolvers.GraphQLResolver
+package graphql
 
+import graphql.directives.DirectiveWiring
+import graphql.mutations.GraphQLMutationResolver
+import graphql.schema.idl.RuntimeWiring.Builder
+import graphql.resolvers.GraphQLResolver
+import graphql.schema.GraphQLSchema
 
 fun Builder.directives(vararg directives: DirectiveWiring): Builder {
     directives.forEach { directive ->
@@ -15,6 +18,13 @@ fun Builder.resolvers(vararg resolvers: GraphQLResolver<*>): Builder {
         this.type(resolver.typeName) {
             it.dataFetcher(resolver.fieldName, resolver.fieldDataFetcher())
         }
+    }
+    return this
+}
+
+fun GraphQLSchema.Builder.mutations(vararg mutations: GraphQLMutationResolver): GraphQLSchema.Builder {
+    mutations.forEach { mutation ->
+        this.mutation(mutation.mutationObject)
     }
     return this
 }

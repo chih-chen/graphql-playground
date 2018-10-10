@@ -1,4 +1,4 @@
-package schemas
+package graphql.schemas
 
 object SchemaRepo {
 
@@ -16,8 +16,21 @@ object SchemaRepo {
             account: Account
         }
 
+        input AccountInput {
+            name: String
+        }
+
+        type AccountOutput {
+            updated: Boolean
+        }
+
+        type Mutation {
+            saveAccount(payload: AccountInput): AccountOutput
+        }
+
         schema {
             query: Query
+            mutation: Mutation
         }
 
     """.trimIndent()

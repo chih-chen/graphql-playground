@@ -1,11 +1,15 @@
-import directives.RestrictedDirective
 import graphql.GraphQL
-
+import graphql.directives
+import graphql.directives.RestrictedDirective
+import graphql.mutations
+import graphql.mutations.AccountMutation
+import graphql.resolvers
+import graphql.resolvers.QueryTypeResolver
+import graphql.schema.GraphQLSchema
 import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.SchemaGenerator
 import graphql.schema.idl.SchemaParser
-import resolvers.QueryTypeResolver
-import schemas.SchemaRepo
+import graphql.schemas.SchemaRepo
 
 fun main(args: Array<String>) {
 
@@ -16,9 +20,17 @@ fun main(args: Array<String>) {
             .resolvers(QueryTypeResolver())
             .build()
 
-    val typeDefinitionRegistry = SchemaParser().parse(schema)
+    val typeDefinitionRegistry = SchemaParser()
+            .parse(schema)
+
     val graphQlSchema = SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring)
-    val buildSchema = GraphQL.newGraphQL(graphQlSchema).build()
+
+    val graphQLFullSchema = GraphQLSchema
+            .newSchema(graphQlSchema)
+            .mutations(AccountMutation())
+            .build()
+
+    val buildSchema = GraphQL.newGraphQL(graphQLFullSchema).build()
 
     val result = buildSchema.execute("""
         query {
@@ -29,5 +41,5 @@ fun main(args: Array<String>) {
             }
         }
     """.trimIndent())
-    println(result.getData<String>())
+    println(result.toSpecification())
 }

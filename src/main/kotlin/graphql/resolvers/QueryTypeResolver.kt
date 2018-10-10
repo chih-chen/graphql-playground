@@ -1,7 +1,7 @@
-package resolvers
+package graphql.resolvers
 
 import graphql.schema.DataFetchingEnvironment
-import types.Account
+import graphql.types.Account
 
 class QueryTypeResolver : GraphQLResolver<Account> {
     override val typeName = "Query"
