@@ -1,6 +1,7 @@
 package graphql.utils
 
 import graphql.directives.DirectiveWiring
+import graphql.mutations.GraphQLMutationResolver
 import graphql.schema.idl.RuntimeWiring.Builder
 import graphql.resolvers.GraphQLResolver
 
@@ -20,7 +21,7 @@ fun Builder.resolvers(vararg resolvers: GraphQLResolver<*>): Builder {
     return this
 }
 
-fun Builder.mutations(vararg mutations: GraphQLResolver<*>): Builder {
+fun Builder.mutations(vararg mutations: GraphQLMutationResolver<*>): Builder {
     mutations.forEach { mutation ->
         this.type(mutation.typeName) {
             it.dataFetcher(mutation.fieldName, mutation.fieldDataFetcher())

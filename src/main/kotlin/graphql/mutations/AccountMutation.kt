@@ -1,10 +1,9 @@
 package graphql.mutations
 
-import graphql.resolvers.GraphQLResolver
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
 
-class AccountMutation : GraphQLResolver<Account> {
+class AccountMutation : GraphQLMutationResolver<Account> {
 
     override val typeName = "Mutation"
 
@@ -14,6 +13,7 @@ class AccountMutation : GraphQLResolver<Account> {
         println("saving arguments... ${it.getArgument<Map<String, String>>("payload")}")
         Account("${it.getArgument<Map<String, String>>("payload")["name"]}", "updatedBank", "updatedPassword")
     }
+
 
 //
 //    override val outputType: GraphQLObjectType = newObject()

@@ -27,11 +27,6 @@ fun main(args: Array<String>) {
 
     val graphQlSchema = SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring)
 
-//    val graphQLFullSchema = GraphQLSchema
-//            .newSchema(graphQlSchema)
-//            .mutations(AccountMutation(), AccountMutation2())
-//            .build()
-
     val buildSchema = GraphQL.newGraphQL(graphQlSchema).build()
 
     val result = buildSchema.execute("""
@@ -46,6 +41,7 @@ fun main(args: Array<String>) {
                 password
             }
             c: saveAccount2(payload: {name: "Jaina"}) {
+                name
                 bank
             }
         }
