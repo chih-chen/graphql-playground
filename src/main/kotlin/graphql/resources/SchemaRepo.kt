@@ -1,4 +1,4 @@
-package graphql.schemas
+package graphql.resources
 
 object SchemaRepo {
 
@@ -10,6 +10,11 @@ object SchemaRepo {
             name: String!
             bank: String
             password: String! @restricted(role: "admin")
+            statement(statementId: Long): Statement
+        }
+
+        type Statement {
+            name: String!
         }
 
         type Query {

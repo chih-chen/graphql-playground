@@ -1,3 +1,3 @@
 package graphql.types
 
-data class Account(val name: String, val bank: String, val password: String)
+data class Account(val name: String, val bank: String, val password: String, val statement: Statement?)

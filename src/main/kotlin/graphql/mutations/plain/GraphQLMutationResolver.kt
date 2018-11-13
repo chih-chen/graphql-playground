@@ -1,8 +1,8 @@
-package graphql.resolvers
+package graphql.mutations.plain
 
 import graphql.schema.DataFetchingEnvironment
 
-interface GraphQLResolver<T> {
+interface GraphQLMutationResolver<T> {
 
     /**
      * Name of the type from your SDL definition

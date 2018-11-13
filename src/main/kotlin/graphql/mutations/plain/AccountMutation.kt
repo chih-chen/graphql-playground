@@ -1,21 +1,28 @@
-package graphql.mutations
+package graphql.mutations.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
+import graphql.types.Statement
 
-class AccountMutation2 : GraphQLMutationResolver<Account> {
-
+class AccountMutation : GraphQLMutationResolver<Account> {
 
     override val typeName = "Mutation"
 
-    override val fieldName = "saveAccount2"
+    override val fieldName = "saveAccount"
 
     override fun fieldDataFetcher(): (DataFetchingEnvironment) -> Account = {
-        println("saving arguments2... ${it.getArgument<Map<String, String>>("payload")}")
-        Account("${it.getArgument<Map<String, String>>("payload")["name"]}2", "updatedBank2", "updatedPassword2")
+        println("saving arguments... ${it.getArgument<Map<String, String>>("payload")}")
+        Account(
+                name = "${it.getArgument<Map<String, String>>("payload")["name"]}",
+                bank = "updatedBank",
+                password = "updatedPassword",
+                statement = Statement(name = "Statement@Test")
+        )
     }
 
-//    override val outputType: GraphQLObjectType = GraphQLObjectType.newObject()
+
+//
+//    override val outputType: GraphQLObjectType = newObject()
 //            .name("AccountOutput")
 //            .field {
 //                it.name("updated")
@@ -23,7 +30,7 @@ class AccountMutation2 : GraphQLMutationResolver<Account> {
 //            }
 //            .build()
 //
-//    override val argumentType: GraphQLInputObjectType = GraphQLInputObjectType.newInputObject()
+//    override val argumentType: GraphQLInputObjectType = newInputObject()
 //            .name("AccountInput")
 //            .field {
 //                it.name("name")
@@ -31,20 +38,20 @@ class AccountMutation2 : GraphQLMutationResolver<Account> {
 //            }
 //            .build()
 //
-//    override val argument: GraphQLArgument = GraphQLArgument.newArgument()
+//    override val argument: GraphQLArgument = newArgument()
 //            .name("payload")
 //            .type(argumentType)
 //            .build()
 //
 //    override val mutationResolver: (DataFetchingEnvironment) -> Any = {
 //        println("saving2...${it.arguments.entries}")
-//        mapOf("updated" to true)
+//        mapOf("updated" to false)
 //    }
 //
-//    override val mutationObject: GraphQLObjectType = GraphQLObjectType.newObject()
-//            .name("saveAccount2")
+//    override val mutationObject: GraphQLObjectType = newObject()
+//            .name("saveAccount")
 //            .field {
-//                it.name("saveAccount2")
+//                it.name("saveAccount")
 //                it.type(outputType)
 //                it.argument(argument)
 //                it.dataFetcher(mutationResolver)

@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile 'com.graphql-java:graphql-java-tools:5.2.0'
+    compile "com.graphql-java-kickstart:graphql-java-tools:5.3.3"
 }
 
 compileKotlin {

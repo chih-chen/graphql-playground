@@ -1,51 +1,33 @@
 package application
 
-import graphql.GraphQL
-import graphql.utils.directives
-import graphql.directives.RestrictedDirective
-import graphql.utils.mutations
-import graphql.mutations.AccountMutation
-import graphql.mutations.AccountMutation2
-import graphql.utils.resolvers
-import graphql.resolvers.QueryTypeResolver
-import graphql.schema.idl.RuntimeWiring
-import graphql.schema.idl.SchemaGenerator
-import graphql.schema.idl.SchemaParser
-import graphql.schemas.SchemaRepo
+import graphql.engine.GraphQLPlainEngine
+import graphql.engine.GraphQLToolsEngine
+import graphql.resources.Queries
+import graphql.resources.SchemaRepo
 
 fun main(args: Array<String>) {
 
     val schema = SchemaRepo.initialSchema
 
-    val runtimeWiring = RuntimeWiring.newRuntimeWiring()
-            .directives(RestrictedDirective())
-            .resolvers(QueryTypeResolver())
-            .mutations(AccountMutation(), AccountMutation2())
-            .build()
+    val plainEngine = GraphQLPlainEngine(schema).engine
+    val toolsEngine = GraphQLToolsEngine(schema).engine
 
-    val typeDefinitionRegistry = SchemaParser().parse(schema)
+//    val result1 = plainEngine.execute(Queries.saveManualAccountMutation)
+//    val result2 = toolsEngine.execute(Queries.saveManualAccountMutation)
 
-    val graphQlSchema = SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring)
+    val result3 = toolsEngine.execute {
+        it.context("queryWithoutNestedObject")
+        it.query(Queries.queryWithoutNestedObject)
+    }
 
-    val buildSchema = GraphQL.newGraphQL(graphQlSchema).build()
+    val result4 = toolsEngine.execute {
+        it.context("queryWithNestedObject")
+        it.query(Queries.queryWithNestedObject)
+    }
 
-    val result = buildSchema.execute("""
+//    println("saveManualAccountMutation 1: ${result1.toSpecification()}")
+//    println("saveManualAccountMutation 2: ${result2.toSpecification()}")
 
-        mutation SaveAccountMutation {
-            a: saveAccount(payload: {name: "Jony"} ) {
-                name
-            }
-            b: saveAccount(payload: {name: "Terry"} ) {
-                name
-                bank
-                password
-            }
-            c: saveAccount2(payload: {name: "Jaina"}) {
-                name
-                bank
-            }
-        }
-
-    """.trimIndent())
-    println(result.toSpecification())
+    println("queryWithoutNestedObject: ${result3.toSpecification()}")
+    println("queryWithNestedObject: ${result4.toSpecification()}")
 }

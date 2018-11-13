@@ -1,7 +1,8 @@
-package graphql.resolvers
+package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
+import graphql.types.Statement
 
 class QueryTypeResolver : GraphQLResolver<Account> {
 
@@ -10,6 +11,11 @@ class QueryTypeResolver : GraphQLResolver<Account> {
     override val fieldName = "account"
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Account = {
-        Account("chih", "Bradesco", "123")
+        Account(
+                name = "chih",
+                bank = "Bradesco",
+                password = "123",
+                statement = Statement(name = "Statament@Test")
+        )
     }
 }
