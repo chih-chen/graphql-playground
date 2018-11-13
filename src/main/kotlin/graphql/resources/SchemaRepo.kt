@@ -11,10 +11,17 @@ object SchemaRepo {
             bank: String
             password: String! @restricted(role: "admin")
             statement(statementId: Long): Statement
+            statements: [Statement!]!
         }
 
         type Statement {
             name: String!
+            transaction(transactionId: Long): Transaction
+            transactions: [Transaction!]!
+        }
+
+        type Transaction {
+            value: Float
         }
 
         type Query {

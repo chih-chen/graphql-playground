@@ -2,21 +2,17 @@ package graphql.resolvers.tool
 
 import com.coxautodev.graphql.tools.GraphQLResolver
 import graphql.schema.DataFetchingEnvironment
-import graphql.types.Account
 import graphql.types.Statement
+import graphql.types.Transaction
 
-class StatementResolver : GraphQLResolver<Account> {
+class StatementResolver : GraphQLResolver<Statement> {
 
-    private val manyStatements = listOf(
-            Statement(name = "1"),
-            Statement(name = "2"),
-            Statement(name = "3"),
-            Statement(name = "4"),
-            Statement(name = "5")
-    )
+    fun transaction(statement: Statement, transactionId: Long, env: DataFetchingEnvironment): Transaction {
+        println(">>>>>>>>>>> LOG: AccountResolver for ${env.getContext<String>()}")
+        return Transaction(12.2)
+    }
 
-    fun statement(account: Account, statementId: Long, env: DataFetchingEnvironment): Statement {
-        println(">>>>>>>>>>> LOG: StatementResolver for ${env.getContext<String>()}")
-        return manyStatements[statementId.toInt().plus(1)]
+    fun transactions(statement: Statement, env: DataFetchingEnvironment): List<Transaction> {
+        return listOf(Transaction(12.11), Transaction(11.11))
     }
 }

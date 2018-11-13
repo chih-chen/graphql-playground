@@ -4,7 +4,9 @@ import graphql.GraphQL
 import graphql.directives.RestrictedDirective
 import graphql.mutations.plain.AccountMutation
 import graphql.mutations.plain.AccountMutation2
+import graphql.resolvers.plain.StatementFieldResolver
 import graphql.resolvers.plain.QueryTypeResolver
+import graphql.resolvers.plain.StatementsFieldResolver
 import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.SchemaGenerator
 import graphql.schema.idl.SchemaParser
@@ -16,7 +18,7 @@ class GraphQLPlainEngine(schema: String) {
 
     private val runtimeWiring = RuntimeWiring.newRuntimeWiring()
             .directives(RestrictedDirective())
-            .resolvers(QueryTypeResolver())
+            .resolvers(QueryTypeResolver(), StatementFieldResolver(), StatementsFieldResolver())
             .mutations(AccountMutation(), AccountMutation2())
             .build()!!
 

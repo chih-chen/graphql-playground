@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.SchemaParser
 import graphql.GraphQL
 import graphql.mutations.tool.MutationResolver
 import graphql.resolvers.tool.QueryResolver
+import graphql.resolvers.tool.AccountResolver
 import graphql.resolvers.tool.StatementResolver
 
 class GraphQLToolsEngine(schema: String) {
@@ -11,7 +12,7 @@ class GraphQLToolsEngine(schema: String) {
     private val schemaParser = SchemaParser
             .newParser()
             .schemaString(schema)
-            .resolvers(QueryResolver(), MutationResolver(), StatementResolver())
+            .resolvers(QueryResolver(), MutationResolver(), AccountResolver(), StatementResolver())
             .build()
             .makeExecutableSchema()
 

@@ -15,19 +15,31 @@ fun main(args: Array<String>) {
 //    val result1 = plainEngine.execute(Queries.saveManualAccountMutation)
 //    val result2 = toolsEngine.execute(Queries.saveManualAccountMutation)
 
-    val result3 = toolsEngine.execute {
-        it.context("queryWithoutNestedObject")
-        it.query(Queries.queryWithoutNestedObject)
-    }
+//    val result3 = toolsEngine.execute {
+//        it.context("queryWithoutNestedObject")
+//        it.query(Queries.queryWithoutNestedObject)
+//    }
 
-    val result4 = toolsEngine.execute {
-        it.context("queryWithNestedObject")
-        it.query(Queries.queryWithNestedObject)
+//    val result4 = toolsEngine.execute {
+//        it.context("queryWithNestedObject")
+//        it.query(Queries.queryWithNestedObject)
+//    }
+
+//    val result5 = toolsEngine.execute {
+//        it.context("statementsQuery")
+//        it.query(Queries.statementsQuery)
+//    }
+
+    val result6 = plainEngine.execute {
+        it.context("statementsQuery - Plain engine")
+        it.query(Queries.statementsQuery)
     }
 
 //    println("saveManualAccountMutation 1: ${result1.toSpecification()}")
 //    println("saveManualAccountMutation 2: ${result2.toSpecification()}")
 
-    println("queryWithoutNestedObject: ${result3.toSpecification()}")
-    println("queryWithNestedObject: ${result4.toSpecification()}")
+//    println("queryWithoutNestedObject: ${result3.toSpecification()}")
+//    println("queryWithNestedObject: ${result4.toSpecification()}")
+//    println("statementsQuery: ${result5.toSpecification()}")
+    println("statementsQuery: ${result6.toSpecification()}")
 }
