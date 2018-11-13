@@ -18,7 +18,6 @@ class StatementFieldResolver : GraphQLResolver<Statement> {
     )
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Statement = {
-        println(">>>>>>>>>>> LOG: StatementFieldResolver for ${it.getContext<String>()}")
         val x = it.getArgument<Long>("statementId")
         manyStatements[x.toInt()]
     }

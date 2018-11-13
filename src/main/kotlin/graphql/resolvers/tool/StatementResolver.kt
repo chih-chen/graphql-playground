@@ -8,7 +8,6 @@ import graphql.types.Transaction
 class StatementResolver : GraphQLResolver<Statement> {
 
     fun transaction(statement: Statement, transactionId: Long, env: DataFetchingEnvironment): Transaction {
-        println(">>>>>>>>>>> LOG: AccountResolver for ${env.getContext<String>()}")
         return Transaction(12.2)
     }
 

@@ -18,7 +18,6 @@ class StatementsFieldResolver : GraphQLResolver<List<Statement>> {
     )
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> List<Statement> = {
-        println(">>>>>>>>>>> LOG: StatementsFieldResolver for ${it.getContext<String>()}")
         manyStatements
     }
 }

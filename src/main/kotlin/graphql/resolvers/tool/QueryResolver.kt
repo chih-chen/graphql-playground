@@ -7,7 +7,6 @@ import graphql.types.Account
 class QueryResolver : GraphQLQueryResolver {
 
     fun account(env: DataFetchingEnvironment): Account {
-        println(">>>>>>>>>>> LOG: QueryResolver [account] for ${env.getContext<String>()}")
         return Account(
                 name = "chihQueryResolver",
                 bank = "BradescoQueryResolver",

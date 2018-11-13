@@ -56,4 +56,25 @@ object Queries {
             }
         }
     """.trimIndent()
+
+    val statementAndTransactionsQuery = """
+        query MyQuery3 {
+            c: account {
+                name
+                bank
+                statement(statementId: 1) {
+                    name
+                    transactions {
+                        value
+                    }
+                }
+                statements {
+                    name
+                    transaction(transactionId: 1) {
+                        value
+                    }
+                }
+            }
+        }
+    """.trimIndent()
 }

@@ -11,7 +11,6 @@ class QueryTypeResolver : GraphQLResolver<Account> {
     override val fieldName = "account"
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Account = {
-        println(">>>>>>>>>>> LOG: QueryResolver [account] for ${it.getContext<String>()}")
         Account(
                 name = "chihPlain",
                 bank = "BradescoPlain",

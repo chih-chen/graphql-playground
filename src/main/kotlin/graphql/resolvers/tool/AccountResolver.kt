@@ -16,12 +16,10 @@ class AccountResolver : GraphQLResolver<Account> {
     )
 
     fun statement(account: Account, statementId: Long, env: DataFetchingEnvironment): Statement {
-        println(">>>>>>>>>>> LOG: AccountResolver for ${env.getContext<String>()}")
         return manyStatements[statementId.toInt().plus(1)]
     }
 
     fun statements(account: Account, env: DataFetchingEnvironment): List<Statement> {
-        println(">>>>>>>>>>> LOG: AccountResolver for ${env.getContext<String>()}")
         return manyStatements
     }
 }
