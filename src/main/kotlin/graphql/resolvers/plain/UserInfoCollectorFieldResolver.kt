@@ -1,15 +1,12 @@
 package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
-import graphql.types.UserInfoCollector
 
-class UserInfoCollectorFieldResolver : GraphQLResolver<UserInfoCollector> {
-
+class UserInfoCollectorFieldResolver : GraphQLResolver<Unit> {
     override val typeName: String = "User"
     override val fieldName: String = "userInfoCollector"
 
-    override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> UserInfoCollector = {
+    override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Unit = {
         println("[userInfoCollector]")
-        UserInfoCollector("CALCULATING...")
     }
 }

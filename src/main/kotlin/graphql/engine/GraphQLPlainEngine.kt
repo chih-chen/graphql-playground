@@ -11,6 +11,7 @@ import graphql.resolvers.plain.StatementFieldResolver
 import graphql.resolvers.plain.StatementsFieldResolver
 import graphql.resolvers.plain.TransactionFieldResolver
 import graphql.resolvers.plain.TransactionsFieldResolver
+import graphql.resolvers.plain.EstimatedEconomyFieldResolver
 import graphql.resolvers.plain.UserInfoCollectorFieldResolver
 import graphql.resolvers.plain.UserQueryResolver
 import graphql.schema.idl.RuntimeWiring
@@ -29,6 +30,7 @@ class GraphQLPlainEngine(schema: String) {
                     UserQueryResolver(),
                     AccountsFieldResolver(),
                     UserInfoCollectorFieldResolver(),
+                    EstimatedEconomyFieldResolver(),
                     CashFlowFieldResolver(),
                     StatementFieldResolver(),
                     StatementsFieldResolver(),
