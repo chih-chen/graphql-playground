@@ -2,7 +2,6 @@ package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
-import graphql.types.Statement
 
 class QueryTypeResolver : GraphQLResolver<Account> {
 

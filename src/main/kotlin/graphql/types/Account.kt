@@ -3,7 +3,5 @@ package graphql.types
 data class Account(
         val name: String,
         val bank: String,
-        val password: String,
-        val statement: Statement? = null,
-        val statements: List<Statement> = emptyList()
+        val password: String
 )

@@ -2,7 +2,6 @@ package graphql.mutations.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
-import graphql.types.Statement
 
 class AccountMutation2 : GraphQLMutationResolver<Account> {
 
@@ -16,8 +15,7 @@ class AccountMutation2 : GraphQLMutationResolver<Account> {
         Account(
                 name = "${it.getArgument<Map<String, String>>("payload")["name"]}2",
                 bank = "updatedBank2",
-                password = "updatedPassword2",
-                statement = Statement(name = "Statement@Test")
+                password = "updatedPassword2"
         )
     }
 

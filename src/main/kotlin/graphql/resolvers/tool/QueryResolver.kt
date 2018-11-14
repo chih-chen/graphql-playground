@@ -10,8 +10,7 @@ class QueryResolver : GraphQLQueryResolver {
         return Account(
                 name = "chihQueryResolver",
                 bank = "BradescoQueryResolver",
-                password = "123QueryResolver",
-                statement = null
+                password = "123QueryResolver"
         )
     }
 }

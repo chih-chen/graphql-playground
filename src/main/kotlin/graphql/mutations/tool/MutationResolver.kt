@@ -2,7 +2,6 @@ package graphql.mutations.tool
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import graphql.types.Account
-import graphql.types.Statement
 
 class MutationResolver : GraphQLMutationResolver {
 
@@ -11,8 +10,7 @@ class MutationResolver : GraphQLMutationResolver {
         return Account(
                 name = payload.name,
                 bank = "updatedBank",
-                password = "updatedPassword",
-                statement = Statement("Statement@Test")
+                password = "updatedPassword"
         )
     }
 
@@ -21,8 +19,7 @@ class MutationResolver : GraphQLMutationResolver {
         return Account(
                 name = payload.name,
                 bank = "updatedBank",
-                password = "updatedPassword",
-                statement = Statement("Statement@Test2")
+                password = "updatedPassword"
         )
     }
 }
