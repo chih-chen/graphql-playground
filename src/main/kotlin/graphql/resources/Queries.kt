@@ -89,6 +89,30 @@ object Queries {
                     name
                     bank
                     password
+                    statements {
+                        name
+                        transactions {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    """.trimIndent()
+
+    val cashFlowQuery = """
+        query {
+            user(userId: 1) {
+                username
+                accounts {
+                    name
+                }
+                userInfoCollector {
+                    estimatedEconomy
+                    cashFlow {
+                        income
+                        outcome
+                    }
                 }
             }
         }

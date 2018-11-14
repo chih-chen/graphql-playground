@@ -9,9 +9,11 @@ object SchemaRepo {
         type User {
             username: String!
             accounts: [Account!]!
+            userInfoCollector: UserInfoCollector
         }
 
         type UserInfoCollector {
+            estimatedEconomy: String
             cashFlow: CashFlow
         }
 

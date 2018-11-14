@@ -6,10 +6,12 @@ import graphql.mutations.plain.AccountMutation
 import graphql.mutations.plain.AccountMutation2
 import graphql.resolvers.plain.AccountQueryResolver
 import graphql.resolvers.plain.AccountsFieldResolver
+import graphql.resolvers.plain.CashFlowFieldResolver
 import graphql.resolvers.plain.StatementFieldResolver
 import graphql.resolvers.plain.StatementsFieldResolver
 import graphql.resolvers.plain.TransactionFieldResolver
 import graphql.resolvers.plain.TransactionsFieldResolver
+import graphql.resolvers.plain.UserInfoCollectorFieldResolver
 import graphql.resolvers.plain.UserQueryResolver
 import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.SchemaGenerator
@@ -26,6 +28,8 @@ class GraphQLPlainEngine(schema: String) {
                     AccountQueryResolver(),
                     UserQueryResolver(),
                     AccountsFieldResolver(),
+                    UserInfoCollectorFieldResolver(),
+                    CashFlowFieldResolver(),
                     StatementFieldResolver(),
                     StatementsFieldResolver(),
                     TransactionFieldResolver(),
