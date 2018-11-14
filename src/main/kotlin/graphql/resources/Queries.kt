@@ -80,4 +80,17 @@ object Queries {
             }
         }
     """.trimIndent()
+
+    val userAccountsQuery = """
+        query {
+            user(userId: 1) {
+                username
+                accounts {
+                    name
+                    bank
+                    password
+                }
+            }
+        }
+    """.trimIndent()
 }

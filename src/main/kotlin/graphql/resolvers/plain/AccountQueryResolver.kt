@@ -3,7 +3,7 @@ package graphql.resolvers.plain
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
 
-class QueryTypeResolver : GraphQLResolver<Account> {
+class AccountQueryResolver : GraphQLResolver<Account> {
 
     override val typeName = "Query"
 

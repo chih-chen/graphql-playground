@@ -6,6 +6,20 @@ object SchemaRepo {
 
         directive @restricted(role: String!) on FIELD_DEFINITION
 
+        type User {
+            username: String!
+            accounts: [Account!]!
+        }
+
+        type UserInfoCollector {
+            cashFlow: CashFlow
+        }
+
+        type CashFlow {
+            income: Float!
+            outcome: Float!
+        }
+
         type Account {
             name: String!
             bank: String
@@ -26,6 +40,7 @@ object SchemaRepo {
 
         type Query {
             account: Account
+            user(userId: Long): User!
         }
 
         input AccountInput {
