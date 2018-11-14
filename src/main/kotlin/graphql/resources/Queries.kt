@@ -73,6 +73,9 @@ object Queries {
                     transaction(transactionId: 1) {
                         value
                     }
+                    transactions {
+                        value
+                    }
                 }
             }
         }

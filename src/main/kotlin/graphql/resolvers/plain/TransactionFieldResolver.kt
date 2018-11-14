@@ -10,6 +10,7 @@ class TransactionFieldResolver : GraphQLResolver<Transaction> {
     override val fieldName: String = "transaction"
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Transaction = {
+        println("[transaction]")
         Transaction(9.91)
     }
 }

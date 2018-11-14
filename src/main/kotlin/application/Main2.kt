@@ -1,5 +1,6 @@
 package application
 
+import com.google.gson.Gson
 import graphql.engine.GraphQLPlainEngine
 import graphql.engine.GraphQLToolsEngine
 import graphql.resources.Queries
@@ -10,11 +11,12 @@ fun main(args: Array<String>) {
     val schema = SchemaRepo.initialSchema
 
     val plainEngine = GraphQLPlainEngine(schema).engine
-    val toolsEngine = GraphQLToolsEngine(schema).engine
+//    val toolsEngine = GraphQLToolsEngine(schema).engine
 
-    val result1 = plainEngine.execute(Queries.statementAndTransactionsQuery)
-    val result2 = toolsEngine.execute(Queries.statementAndTransactionsQuery)
+    val result1 = plainEngine.execute(Queries.statementAndTransactionsQuery).toSpecification()
+//    val result2 = toolsEngine.execute(Queries.statementAndTransactionsQuery)
 
-    println(result1)
-    println(result2)
+
+    println(Gson().toJson(result1))
+//    println(result2)
 }

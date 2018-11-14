@@ -11,11 +11,11 @@ class QueryTypeResolver : GraphQLResolver<Account> {
     override val fieldName = "account"
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Account = {
+        println("[account]")
         Account(
                 name = "chihPlain",
                 bank = "BradescoPlain",
-                password = "123",
-                statement = Statement(name = "Statament@Test")
+                password = "123"
         )
     }
 }
