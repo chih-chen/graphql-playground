@@ -1,90 +1,108 @@
-# Gradle
-# ------
-.gradle
-/build
-/buildSrc/build
-/buildSrc/subprojects/*/build
-/subprojects/*/build
-/subprojects/docs/src/samples/*/*/build
-/subprojects/internal-android-performance-testing/build-android-libs
+##########################
+# .gitignore for Eclipse #
+##########################
 
-# IDEA
-# ----
+.metadata
+bin/
+classes/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+###########################
+# .gitignore for IntelliJ #
+###########################
+
+# User-specific stuff:
 .idea
-.shelf
-/*.iml
-/*.ipr
-/*.iws
-/buildSrc/.idea
-/buildSrc/.shelf
-/buildSrc/*.iml
-/buildSrc/*.ipr
-/buildSrc/*.iws
-/buildSrc/out
-/buildSrc/subprojects/*/*.iml
-/buildSrc/subprojects/*/out
-/out
-/subprojects/*/*.iml
-/subprojects/*/out
-/.teamcity/*.iml
-/.teamcity/target
+*.iml
 
-# Eclipse
-# -------
-*.classpath
-*.project
-*.settings
-/bin
-/subprojects/*/bin
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
 atlassian-ide-plugin.xml
-.metadata/
 
-# NetBeans
-# --------
-.nb-gradle
-.nb-gradle-properties
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
 
-# Vim
-# ---
-*.sw[op]
+##############################
+# .gitignore for SublimeText #
+##############################
 
-# Emacs
-# -----
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json
+
 *~
-\#*\#
-.\#*
-
-# Textmate
-# --------
-.textmate
-
-# Sublime Text
-# ------------
-*.sublime-*
-
-# jEnv
-# ----
-.java-version
-
-# macOS
-# ----
-.DS_Store
-
-# HPROF
-# -----
-*.hprof
-
-# Work dirs
-# ---------
-/incoming-distributions
-/intTestHomeDir
-
-# Logs
-# ----
-/*.log
-
-# oh-my-zsh gradle plugin
-.gradletasknamecache
-
-#output
-output
+**/.gradle
+**/build
+**/logs
+**/out
