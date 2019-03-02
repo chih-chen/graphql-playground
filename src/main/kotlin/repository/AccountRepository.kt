@@ -1,4 +1,4 @@
-package repository.account
+package repository
 
 import graphql.types.Account
 
@@ -13,4 +13,8 @@ class AccountRepository {
         Account("account6", "bank6", "password6"),
         Account("account7", "bank7", "password7")
     )
+
+    fun first() = accounts.first()
+
+    fun all() = accounts
 }

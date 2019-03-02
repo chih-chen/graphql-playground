@@ -24,7 +24,7 @@ class AccountMutation : GraphQLMutationResolver<Account> {
 //            .name("AccountOutput")
 //            .field {
 //                it.name("updated")
-//                it.type(Scalars.GraphQLBoolean)
+//                   it.type(Scalars.GraphQLBoolean)
 //            }
 //            .build()
 //

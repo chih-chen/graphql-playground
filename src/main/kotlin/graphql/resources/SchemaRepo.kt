@@ -13,8 +13,8 @@ object SchemaRepo {
         }
 
         type UserInfoCollector {
-            estimatedEconomy: String
-            cashFlow: CashFlow
+            estimatedEconomy: Long!
+            cashFlow: CashFlow!
         }
 
         type CashFlow {
@@ -26,7 +26,7 @@ object SchemaRepo {
             name: String!
             bank: String
             password: String! @restricted(role: "admin")
-            statement(statementId: Long): Statement
+            statement(statementId: Int): Statement
             statements: [Statement!]!
         }
 

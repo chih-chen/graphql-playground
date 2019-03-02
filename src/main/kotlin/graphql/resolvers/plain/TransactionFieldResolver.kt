@@ -2,15 +2,18 @@ package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Transaction
+import repository.TransactionRepository
 
-class TransactionFieldResolver : GraphQLResolver<Transaction> {
+class TransactionFieldResolver(
+    private val transactionRepository: TransactionRepository
+) : GraphQLResolver<Transaction> {
 
     override val typeName: String = "Statement"
 
     override val fieldName: String = "transaction"
 
-    override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Transaction = {
+    override fun fieldDataFetcher(): DataFetchingEnvironment.() -> Transaction = {
         println("[transaction]")
-        Transaction(9.91)
+        transactionRepository.first()
     }
 }

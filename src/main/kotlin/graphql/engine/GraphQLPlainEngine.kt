@@ -20,22 +20,34 @@ import graphql.schema.idl.SchemaParser
 import graphql.utils.directives
 import graphql.utils.mutations
 import graphql.utils.resolvers
+import repository.AccountRepository
+import repository.CashFlowRepository
+import repository.StatementRepository
+import repository.TransactionRepository
+import repository.UserRepository
 
-class GraphQLPlainEngine(schema: String) {
+class GraphQLPlainEngine(
+    schema: String,
+    userRepository: UserRepository,
+    accountRepository: AccountRepository,
+    cashFlowRepository: CashFlowRepository,
+    statementRepository: StatementRepository,
+    transactionRepository: TransactionRepository
+) {
 
     private val runtimeWiring = RuntimeWiring.newRuntimeWiring()
         .directives(RestrictedDirective())
         .resolvers(
-            AccountQueryResolver(),
-            UserQueryResolver(),
-            AccountsFieldResolver(),
+            UserQueryResolver(userRepository),
+            AccountQueryResolver(accountRepository),
+            AccountsFieldResolver(accountRepository),
             UserInfoCollectorFieldResolver(),
-            EstimatedEconomyFieldResolver(),
-            CashFlowFieldResolver(),
-            StatementFieldResolver(),
-            StatementsFieldResolver(),
-            TransactionFieldResolver(),
-            TransactionsFieldResolver()
+            EstimatedEconomyFieldResolver(cashFlowRepository),
+            CashFlowFieldResolver(cashFlowRepository),
+            StatementFieldResolver(statementRepository),
+            StatementsFieldResolver(statementRepository),
+            TransactionFieldResolver(transactionRepository),
+            TransactionsFieldResolver(transactionRepository)
         )
         .mutations(AccountMutation(), AccountMutation2())
         .build()!!

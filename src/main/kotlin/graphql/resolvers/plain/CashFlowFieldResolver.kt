@@ -2,13 +2,17 @@ package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.CashFlow
+import repository.CashFlowRepository
 
-class CashFlowFieldResolver : GraphQLResolver<CashFlow> {
+class CashFlowFieldResolver(
+    private val cashFlowRepository: CashFlowRepository
+) : GraphQLResolver<CashFlow> {
 
     override val typeName: String = "UserInfoCollector"
+
     override val fieldName: String = "cashFlow"
 
-    override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> CashFlow = {
-        CashFlow(99.9, 11.1)
+    override fun fieldDataFetcher(): DataFetchingEnvironment.() -> CashFlow = {
+        cashFlowRepository.first()
     }
 }

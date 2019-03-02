@@ -2,19 +2,18 @@ package graphql.resolvers.plain
 
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
+import repository.AccountRepository
 
-class AccountQueryResolver : GraphQLResolver<Account> {
+class AccountQueryResolver(
+    private val accountRepository: AccountRepository
+) : GraphQLResolver<Account> {
 
     override val typeName = "Query"
 
     override val fieldName = "account"
 
-    override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> Account = {
+    override fun fieldDataFetcher(): DataFetchingEnvironment.() -> Account = {
         println("[account]")
-        Account(
-            name = "chihPlain",
-            bank = "BradescoPlain",
-            password = "123"
-        )
+        accountRepository.first()
     }
 }
