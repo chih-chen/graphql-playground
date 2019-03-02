@@ -12,9 +12,9 @@ class AccountMutation : GraphQLMutationResolver<Account> {
     override fun fieldDataFetcher(): (DataFetchingEnvironment) -> Account = {
         println("saving arguments... ${it.getArgument<Map<String, String>>("payload")}")
         Account(
-                name = "${it.getArgument<Map<String, String>>("payload")["name"]}",
-                bank = "updatedBank",
-                password = "updatedPassword"
+            name = "${it.getArgument<Map<String, String>>("payload")["name"]}",
+            bank = "updatedBank",
+            password = "updatedPassword"
         )
     }
 

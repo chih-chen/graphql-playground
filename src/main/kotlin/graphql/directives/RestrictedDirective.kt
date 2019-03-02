@@ -16,7 +16,7 @@ class RestrictedDirective : DirectiveWiring {
 
         val restrictedFetcher = DataFetcher {
 
-            if(targetRole == "admin")
+            if (targetRole == "admin")
                 originalFetcher.get(it)
             else
                 "null"
@@ -26,6 +26,4 @@ class RestrictedDirective : DirectiveWiring {
             builder.dataFetcher(restrictedFetcher)
         }
     }
-
-
 }

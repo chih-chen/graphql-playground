@@ -10,11 +10,11 @@ class StatementsFieldResolver : GraphQLResolver<List<Statement>> {
     override val fieldName: String = "statements"
 
     private val manyStatements = listOf(
-            Statement(name = "1"),
-            Statement(name = "2"),
-            Statement(name = "3"),
-            Statement(name = "4"),
-            Statement(name = "5")
+        Statement(name = "1"),
+        Statement(name = "2"),
+        Statement(name = "3"),
+        Statement(name = "4"),
+        Statement(name = "5")
     )
 
     override fun fieldDataFetcher(): (environment: DataFetchingEnvironment) -> List<Statement> = {

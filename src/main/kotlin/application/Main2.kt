@@ -2,7 +2,6 @@ package application
 
 import com.google.gson.Gson
 import graphql.engine.GraphQLPlainEngine
-import graphql.engine.GraphQLToolsEngine
 import graphql.resources.Queries
 import graphql.resources.SchemaRepo
 
