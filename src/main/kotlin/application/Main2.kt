@@ -1,21 +1,34 @@
 package application
 
-import com.google.gson.Gson
 import graphql.engine.GraphQLPlainEngine
 import graphql.resources.Queries
 import graphql.resources.SchemaRepo
+import graphql.utils.JsonProvider.gson
+import repository.AccountRepository
+import repository.CashFlowRepository
+import repository.StatementRepository
+import repository.TransactionRepository
+import repository.UserRepository
 
 fun main(args: Array<String>) {
 
     val schema = SchemaRepo.initialSchema
+    val userRepository = UserRepository()
+    val accountRepository = AccountRepository()
+    val statementRepository = StatementRepository()
+    val transactionRepository = TransactionRepository()
+    val cashFlowRepository = CashFlowRepository()
 
-    val plainEngine = GraphQLPlainEngine(schema).engine
-//    val toolsEngine = GraphQLToolsEngine(schema).engine
+    val plainEngine = GraphQLPlainEngine(
+        schema = schema,
+        userRepository = userRepository,
+        accountRepository = accountRepository,
+        cashFlowRepository = cashFlowRepository,
+        statementRepository = statementRepository,
+        transactionRepository = transactionRepository
+    ).engine
 
     val result1 = plainEngine.execute(Queries.statementAndTransactionsQuery).toSpecification()
-//    val result2 = toolsEngine.execute(Queries.statementAndTransactionsQuery)
 
-
-    println(Gson().toJson(result1))
-//    println(result2)
+    println(gson.toJson(result1))
 }
