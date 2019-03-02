@@ -1,5 +1,6 @@
 package graphql.engine
 
+import com.coxautodev.graphql.tools.SchemaParser
 import graphql.GraphQL
 import graphql.mutations.tool.MutationResolver
 import graphql.resolvers.tool.AccountResolver

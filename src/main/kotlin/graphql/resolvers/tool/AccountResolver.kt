@@ -1,5 +1,6 @@
 package graphql.resolvers.tool
 
+import com.coxautodev.graphql.tools.GraphQLResolver
 import graphql.schema.DataFetchingEnvironment
 import graphql.types.Account
 import graphql.types.Statement

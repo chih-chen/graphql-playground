@@ -1,5 +1,6 @@
 package graphql.mutations.tool
 
+import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import graphql.types.Account
 
 class MutationResolver : GraphQLMutationResolver {
