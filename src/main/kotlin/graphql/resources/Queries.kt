@@ -19,29 +19,6 @@ object Queries {
         }
     """.trimIndent()
 
-    val queryWithoutNestedObject = """
-        query MyQuery {
-            a: account {
-                name
-                bank
-                password
-            }
-        }
-    """.trimIndent()
-
-    val queryWithNestedObject = """
-        query MyQuery {
-            b: account {
-                name
-                bank
-                password
-                statement(statementId: 1) {
-                    name
-                }
-            }
-        }
-    """.trimIndent()
-
     val statementsQuery = """
         query MyQuery2 {
             c: account {
