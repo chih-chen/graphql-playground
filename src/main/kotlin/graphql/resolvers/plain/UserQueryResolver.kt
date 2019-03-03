@@ -14,6 +14,7 @@ class UserQueryResolver(
 
     override fun fieldDataFetcher(): DataFetchingEnvironment.() -> User = {
         println("[user]")
-        userRepository.first()
+        val userId = getArgument<Int>("userId")
+        userRepository.findById(userId)
     }
 }

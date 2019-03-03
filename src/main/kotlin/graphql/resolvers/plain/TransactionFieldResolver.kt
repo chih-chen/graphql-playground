@@ -15,8 +15,8 @@ class TransactionFieldResolver(
 
     override fun fieldDataFetcher(): DataFetchingEnvironment.() -> CompletableFuture<Transaction> = {
         println("[transaction]")
-        val dataloader = getDataLoader<Long, Transaction>("transactions")
-        println(dataloader.statistics)
-        dataloader.load(1)
+        val transactionId = getArgument<Int>("transactionId")
+        val dataloader = getDataLoader<Int, Transaction>("transactions")
+        dataloader.load(transactionId)
     }
 }

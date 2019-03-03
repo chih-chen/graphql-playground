@@ -16,6 +16,7 @@ class UserRepository {
 
     fun first() = users.first()
 
+    fun findById(userId: Int) = users[userId]
     fun all() = users
 
 }
