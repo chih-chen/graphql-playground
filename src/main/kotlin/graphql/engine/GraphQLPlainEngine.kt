@@ -2,6 +2,8 @@ package graphql.engine
 
 import graphql.GraphQL
 import graphql.directives.RestrictedDirective
+import graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation
+import graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentationOptions
 import graphql.mutations.plain.AccountMutation
 import graphql.mutations.plain.AccountMutation2
 import graphql.resolvers.plain.AccountQueryResolver
@@ -57,5 +59,13 @@ class GraphQLPlainEngine(
     private val graphQlSchema = SchemaGenerator()
         .makeExecutableSchema(typeDefinitionRegistry, runtimeWiring)!!
 
-    val engine = GraphQL.newGraphQL(graphQlSchema).build()!!
+    private val dispatcherInstrumentation = DataLoaderDispatcherInstrumentationOptions
+        .newOptions()
+        .includeStatistics(true)
+        .run { DataLoaderDispatcherInstrumentation(this) }
+
+    val engine = GraphQL
+        .newGraphQL(graphQlSchema)
+        .instrumentation(dispatcherInstrumentation)
+        .build()!!
 }
